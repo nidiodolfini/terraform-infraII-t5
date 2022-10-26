@@ -1,0 +1,15 @@
+variable "usuario" {
+  default = "nidio"
+}
+
+variable "regiao" {
+  default = "us-east-2"
+}
+
+variable "ami" {
+    default = "ami-097a2df4ac947655f"  
+}
+
+variable "tipo_instancia" {
+    default = "t2.micro"
+}
