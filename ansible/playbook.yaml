@@ -1,0 +1,6 @@
+- hosts: all # fazer algo em todos os hosts
+  become: true # se precirar use o sudo 
+  tasks: # aqui começa lista de tarefas 
+  - name: alterando nome dos hosts 
+    hostname:
+      name: '{{ new_hostname }}'
