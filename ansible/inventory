@@ -9,6 +9,4 @@ ansible_ssh_common_args='-o StrictHostKeyChecking=accept-new'
 ansible_user=ubuntu 
 ansible_ssh_private_key_file=/home/ubuntu/.ssh/terraform-aws 
 #ansible-playbook playbook.yaml -i inventory
-#ansible-playbook masters.yaml -i inventory
-#ansible-playbook workers.yaml -i inventory
 #ansible -i inventory all -m ping
