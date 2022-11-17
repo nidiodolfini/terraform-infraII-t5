@@ -4,3 +4,55 @@
   - name: alterando nome dos hosts 
     hostname:
       name: '{{ new_hostname }}'
+
+  - name: instalar dependencias do Docker
+    apt: 
+      name: "{{item}}"
+      state: present
+      update_cache: yes
+    loop:
+      - apt-transport-https #0
+      - ca-certificates #1
+      - curl
+      - gnupg-agent
+      - software-properties-common    
+
+  - name: adicionar chave gpg docker
+    apt_key: 
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
+
+  - name: adicionar repo do docker
+    apt_repository:
+      repo: deb https://download.docker.com/linux/ubuntu bionic stable
+      state: present
+    
+  - name: instalar o docker
+    apt:
+      name: "{{item}}"
+      state: latest
+      update_cache: yes
+    loop: 
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-compose
+
+  - name: instalar python pq o ansible precisa para gerir o docker
+    apt:
+      name: "{{item}}"
+      state: present
+      update_cache: yes
+    loop:
+      - python3
+      - pip
+  
+  - name: Instalar plugin do Ansible para gerir o docker
+    pip:
+      name: docker
+
+  handlers: 
+    - name: reiniciar docker
+      service: 
+        name: docker
+        state: restarted
