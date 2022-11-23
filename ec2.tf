@@ -1,5 +1,5 @@
 resource "aws_instance" "nidio_ec2" {
-  count         = 2
+  count         = 1
   ami           = var.ami
   instance_type = var.tipo_instancia
   key_name      = "${var.usuario}-terraform-aws"
